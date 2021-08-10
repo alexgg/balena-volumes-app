@@ -1,0 +1,24 @@
+version: '2'
+volumes:
+  test-volume:
+services:
+  app1:
+    build:
+      context: ./app1
+      dockerfile: Dockerfile.template
+    labels:
+      io.balena.features.procfs: '1'
+      io.balena.features.supervisor-api: '1'
+    volumes:
+      - 'test-volume:/data'
+    privileged: true
+  app2:
+    build:
+      context: ./app2
+      dockerfile: Dockerfile.template
+    labels:
+      io.balena.features.procfs: '1'
+      io.balena.features.supervisor-api: '1'
+    volumes:
+      - 'test-volume:/data'
+
